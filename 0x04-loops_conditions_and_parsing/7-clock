@@ -10,7 +10,7 @@ do
     while [ $mins -le 59 ]
     do
 	echo "$mins"
-	mins=`expr $mins + 1`
+	mins=$(( mins + 1 ))
     done
-    hour=`expr $hour + 1`
+    hour=$(( hour + 1 ))
 done

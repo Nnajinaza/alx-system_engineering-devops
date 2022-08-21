@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#displays the files in the current directory without prefix
+
+for files in $(ls)
+do
+    echo "$files" | cut -d- -f2
+done
