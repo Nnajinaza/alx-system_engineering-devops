@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#telling a story using the /etc/passwd file
+
+nos=0
+
+while IFS=":" read -r f0 f1 f2 f3 f4 f5 f6
+do
+    echo "The user $f0 is part of the $f3 gang, lives in $f5 and rides $f6. $f2's place is protected by the passcode $f1, more info about the user here: $f4"
+    nos=$(( nos + 1 ))
+done < /etc/passwd
