@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#Bash script that displays nos 1 to 100
+
+nos=1
+
+while [ $nos -le 100 ]
+do
+    if [ $(( nos % 15 )) -eq 0 ]
+    then
+	echo "FizzBuzz"
+    elif [ $(( nos % 5 )) -eq 0 ]
+    then
+	echo "Buzz"
+    elif [ $(( nos % 3 )) -eq 0 ]
+    then
+	echo "Fizz"
+    else
+	echo "$nos"
+    fi
+    nos=$(( nos + 1 ))
+done
