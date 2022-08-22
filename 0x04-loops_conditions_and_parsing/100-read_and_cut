@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#display the content of the file /etc/passwd
+
+file='/etc/passwd'
+nos=1
+while IFS=":" read -ra line;
+do
+    echo "${line[0]}:${line[2]}:${line[5]}"
+    nos=$(( nos + 1 ))
+done < $file
