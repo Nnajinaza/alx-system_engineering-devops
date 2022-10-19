@@ -1,5 +1,6 @@
-#!/usr/bin/env bash
 # install flask from pip3
 
-include :: python
-include :: python :: flask
+packge {'flask':
+ensure   => '2.1.0',
+provider => pip3
+}
