@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
-# Using Puppet, create a file in /tmp.
+#Using Puppet, create a file in /tmp.
 
-file { '/tmp':
+file { 'school':
+ensure   => 'present',
 path     => '/tmp/school',
 mode     => '0744',
 owener   => 'www-data',
