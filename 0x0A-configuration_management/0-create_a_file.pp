@@ -1,7 +1,7 @@
 # Using Puppet, create a file in /tmp.
 
-file { 'school':
-  path     => '/tmp/school',
+file { '/tmp/school':
+  ensure   => 'present',
   mode     => '0744',
   owner    => 'www-data',
   group    => 'www-data',
