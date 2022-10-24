@@ -3,7 +3,7 @@
 
 STRING="Hello World!"
 
-REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https://youtu.be/dQw4w9WgXcQ;\n\t}\n"
+REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https:/google.com;\n\t}\n"
 FILE="/etc/nginx/sites-available/default"
 
 ERRORFILE="/usr/share/nginx/html/404error.html"
