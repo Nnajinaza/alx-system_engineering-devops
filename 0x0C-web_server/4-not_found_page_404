@@ -16,7 +16,7 @@ ufw allow 'Nginx HTTP'
 sudo echo "$STRING" > /var/www/html/index.nginx-debian.html
 sed -i "37i\ $REDIRECT" "$FILE"
 
-echo "$FOUR" > "$ERRORFILE"
+echo -e "$FOUR" > "$ERRORFILE"
 sed -i "37i\ $ERRORREDIRECT" "$FILE"
 
 service nginx restart
