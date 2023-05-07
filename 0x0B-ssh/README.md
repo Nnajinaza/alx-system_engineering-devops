@@ -1,1 +1,1 @@
-0x0B-ssh
+This directory is on ssh
