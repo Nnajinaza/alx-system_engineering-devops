@@ -2,21 +2,40 @@
 #Configure your Nginx server to have a custom 404 page that contains the string Ceci n'est pas une page.
 
 STRING="Hello World!"
+CECI="Ceci n\x27est pas une page"
 
-REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https:/google.com;\n\t}\n"
 FILE="/etc/nginx/sites-available/default"
+ERRORFILE="/var/www/html/error.html"
 
-ERRORFILE="/usr/share/nginx/html/404error.html"
-FOUR="Ceci n\x27est pas une page"
-ERRORREDIRECT="\n\tlocation \ {\n\t\ttry_files \$uri \$uri/ = 404;\n\t\tadd_header X-Served-By \$hostname;\n\t}\n\terror_page 404 /404error.html;\n\tlocation = /404error.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t\tadd_header X-Served-By \$hostname;\n\t}\n"
+CONFIGFILE=\
+"server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name _;
+        location / {
+                try_files \$uri \$uri/ =404;
+                add_header X-Served-By \$hostname;
+        }
+        location /redirect_me {
+                return 301 https://youtube.com/watch?v=QH2-TGUlwu4;
+        }
+        error_page 404 /error.html;
+        location = /error.html {
+                root /var/www/html/;
+                internal;
+                add_header X-Served-By \$hostname;
+        }
+}"
+
+bash -c "echo -e '$CONFIGFILE' > /etc/nginx/sites-enabled/default"
 
 apt-get -y update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
 sudo echo "$STRING" > /var/www/html/index.nginx-debian.html
-sed -i "37i\ $REDIRECT" "$FILE"
 
-echo -e "$FOUR" > "$ERRORFILE"
-sed -i "37i\ $ERRORREDIRECT" "$FILE"
+echo -e "$CECI" > "$ERRORFILE"
 
 service nginx restart
